@@ -1,17 +1,19 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
+#
 # Copyright (c) 2013-2014, Kamil Wilas (wilas.pl)
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
+#
 # Example usage:
-# echo 'Hello World!' | python convert_2_scancode.py
+# echo 'Hello World!' | python keys2vb.py
 #
 # Note:
 # Script work with python 2.6+ and python 3
 # When scancode not exist for given char
-# then script exit with code 1 and an error is write to stderr.
+# then script exit with status code 1 and an error is write to stderr.
 #
 # Helpful links - scancodes:
 # - basic: http://humbledown.org/files/scancodes.l (http://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html)
@@ -144,3 +146,5 @@ if __name__ == "__main__":
     # write result to stdout
     print(' '.join(keys_array))
 
+# vim modeline
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
