@@ -70,6 +70,7 @@ def get_multi_char_codes():
     scancodes['<Left>'] = '4b cb'
     scancodes['<Right>'] = '4d cd'
     scancodes['<Home>'] = '47 c7'
+    scancodes['<Lt>'] = '2a 33 b3 aa', # to type '<' in some contexts - e.g. <Enter> literally
     # F1..F10
     for idx in range(1,10):
         scancodes['<F%s>' % idx] = '%02x' % (idx + 0x3a)
