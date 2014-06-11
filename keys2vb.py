@@ -16,11 +16,12 @@
 # then script exit with status code 1 and an error is write to stderr.
 #
 # Helpful links - scancodes:
-# - basic: http://humbledown.org/files/scancodes.l (http://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html)
+# - basic: http://humbledown.org/files/scancodes.l
+# - basic: http://www.win.tue.nl/~aeb/linux/kbd/scancodes-1.html
 # - make and break codes (c+0x80): http://www.win.tue.nl/~aeb/linux/kbd/scancodes-10.html
 # - make and break codes table: http://stanislavs.org/helppc/make_codes.html
 # - https://github.com/jedi4ever/veewee/blob/master/lib/veewee/provider/core/helper/scancode.rb
-
+#
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import sys
@@ -72,7 +73,7 @@ def get_multi_char_codes():
         '<Left>'        : '4b cb',
         '<Right>'       : '4d cd',
         '<Home>'        : '47 c7',
-        '<Lt>'          : '2a 33 b3 aa', # to type '<' in some contexts - e.g. <Enter> literally
+        '<Lt>'          : '2a 33 b3 aa', #to type '<' - e.g. <Enter> literally
     }
     # F1..F10
     for idx in range(1,10):
@@ -80,7 +81,8 @@ def get_multi_char_codes():
     # VT1..VT12 (Switch to Virtual Terminal)
     for idx in range(1,12):
         # LeftAlt + RightCtrl + F1-12
-        scancodes['<VT%s>' % idx] = '38 e0 1d %02x b8 e0 9d %02x' % (idx + 0x3a, idx +0xba)
+        scancodes['<VT%s>' % idx] = '38 e0 1d %02x b8 e0 9d %02x'\
+                % (idx + 0x3a, idx +0xba)
     return scancodes
 
 def process_multiply(input):
@@ -105,7 +107,8 @@ def translate_chars(input):
     multi_char_regexpr = '(<[^<> ]+>)';
     spc_scancodes = get_multi_char_codes()
     # proces multi-char codes/marks (special)
-    # find all special codes in input string and mark correspondence cells in keys_array
+    # find all special codes in input string
+    # and mark correspondence cells in keys_array
     for match in re.finditer(r'%s' % multi_char_regexpr, input):
         spc = match.group(1)
         if not spc in spc_scancodes:
@@ -129,7 +132,8 @@ def translate_chars(input):
         try:
             keys_array[index] = scancodes[input_list[index]]
         except KeyError:
-            sys.stderr.write('Error: Unknown symbol found - %s\n' % repr(input_list[index]))
+            sys.stderr.write('Error: Unknown symbol found - %s\n'
+                    % repr(input_list[index]))
             sys.exit(1)
 
     # remove empty string from keys_array
