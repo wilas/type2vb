@@ -137,6 +137,8 @@ if __name__ == "__main__":
     input = process_multiply(input)
     # replace white-spaces with <Spacebar>
     input = input.replace(' ', '<Spacebar>')
+    input = input.replace('\n', '<Enter>')
+    input = input.replace('\t', '<Tab>')
     # process keys
     keys_array = translate_chars(input)
     # write result to stdout
