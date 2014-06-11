@@ -102,18 +102,21 @@ def translate_chars(input):
     # -1 mean no key yet assign to cell in array
     keys_array = [-1] * len(input)
 
-    # proces multi-char codes/marks (special)
+    multi_char_regexpr = '(<[^<> ]+>)';
     spc_scancodes = get_multi_char_codes()
-    for spc in spc_scancodes:
-        # find all spc code in input string and mark correspondence cells in keys_array
-        for match in re.finditer(spc, input):
-            s = match.start()
-            e = match.end()
-            # mark start pos given match as scancode in keys_array
-            keys_array[s] = spc_scancodes[spc]
-            # mark rest pos given match as empty string in keys_array
-            for i in range(s+1, e):
-                keys_array[i] = ''
+    # proces multi-char codes/marks (special)
+    # find all special codes in input string and mark correspondence cells in keys_array
+    for match in re.finditer(r'%s' % multi_char_regexpr, input):
+        spc = match.group(1)
+        if not spc in spc_scancodes:
+            continue
+        s = match.start()
+        e = match.end()
+        # mark start pos given match as scancode in keys_array
+        keys_array[s] = spc_scancodes[spc]
+        # mark rest pos given match as empty string in keys_array
+        for i in range(s+1, e):
+            keys_array[i] = ''
 
     # process single-char codes
     scancodes = get_one_char_codes()
