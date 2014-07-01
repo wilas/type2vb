@@ -21,7 +21,7 @@ INSTALL := install
 BUILD_DIR := build_src
 
 # what scripts install/uninstall
-PY_TARGET := keys2vb.py
+PY_TARGET := type2vb.py
 
 
 all:

@@ -1,12 +1,12 @@
 # Contribute to vbkick
 
- - Submit a [GitHub issue](https://github.com/wilas/keys2vb/issues)
+ - Submit a [GitHub issue](https://github.com/wilas/type2vb/issues)
  - Tweet [@wilask](https://twitter.com/wilask)
  - Submit a pull request to the master branch
 
 # How to submit a pull request
 
- - Fork keys2vb
+ - Fork type2vb
  - Create feature branch (`git checkout -b new-feature`)
  - Commit changes (`git commit -am 'New feature'`)
  - Push to the branch (`git push origin new-feature`)

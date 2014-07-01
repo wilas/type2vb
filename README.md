@@ -11,19 +11,19 @@ Note: The project was originally developed in [vbkick](https://github.com/wilas/
 
 Example:
 ```
-$ VBoxManage controlvm VM_NAME keyboardputscancode $(printf "Hello VM" | keys2vb.py)
-$ VBoxManage controlvm VM_NAME keyboardputscancode $(printf "<Multiply(Hello, 3)> VM" | keys2vb.py)
+$ VBoxManage controlvm VM_NAME keyboardputscancode $(echo "Hello VM" | type2vb.py)
+$ VBoxManage controlvm VM_NAME keyboardputscancode $(echo "<Multiply(Hello, 3)> VM" | type2vb.py)
 ```
 
 Example keyboard scancodes:
 ```
-$ printf "Hello VM" | keys2vb.py
+$ echo "Hello VM" | type2vb.py
 2a 23 a3 aa 12 92 26 a6 26 a6 18 98 39 b9 2a 2f af aa 2a 32 b2 aa
 
-$ printf "<Multiply(H,3)>" | keys2vb.py
+$ echo "<Multiply(H,3)>" | type2vb.py
 2a 23 a3 aa 2a 23 a3 aa 2a 23 a3 aa
 
-$ printf "<Multiply(<Wait>,3)>" | keys2vb.py
+$ echo "<Multiply(<Wait>,3)>" | type2vb.py
 wait wait wait
 ```
 
@@ -32,7 +32,7 @@ Special keys:
 `<Wait>` -  helps control time flow -  can not be use directly with VBoxManage
 
 ```
-$ VBoxManage controlvm VM_NAME keyboardputscancode $(printf "Hello <Wait> VM" | keys2vb.py)
+$ VBoxManage controlvm VM_NAME keyboardputscancode $(echo "Hello <Wait> VM" | type2vb.py)
 VBoxManage: error: Error: 'wait' is not a hex byte!
 ```
 
